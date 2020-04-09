@@ -38,10 +38,11 @@ app.post('/api/appointments', (req, res) => {
   appointment.phone = appointment.phone.replace(/\D/g,'')
   const date = moment(appointment.date, 'YYYY-DD-MM').startOf('day')
   const time = date.hour(9).add(appointment.slot, 'hours')
-  const smsBody = `${appointment.name}, this message is to confirm your appointment at ${time.format('h:mm a')} on ${date.format('dddd MMMM Do[,] YYYY')}.`
+//  const smsBody = `[test]-${appointment.name}, this message is to confirm your appointment at ${time.format('h:mm a')} on ${date.format('dddd MMMM Do[,] YYYY')}.`
+  const smsBody = `[test]- this message is to confirm your appointment at ${time.format('h:mm a')} on ${date.format('dddd MMMM Do[,] YYYY')}.`
   //send confirmation message to user
   twilioClient.messages.create({
-    to: '+1' + appointment.phone,
+    to: '+642885101001',//+ appointment.phone,
     from: twilioNumber,
     body: smsBody
   }, (err, message) => console.log(message, err))
